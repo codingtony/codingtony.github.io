@@ -1,0 +1,3 @@
+[submodule "pace"]
+	path = pace
+	url = git@github.com:codingtony/pace.git
