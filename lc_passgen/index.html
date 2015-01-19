@@ -1,0 +1,45 @@
+
+<html>
+<head><title>random lowercase password generator</title></head>
+<body onload="randomLowercaseWord(100,10)">
+<script type="text/javascript">
+
+function randomLowercaseWord(numberOfWords,lengthOfWord) {
+	var selectObj=document.getElementById("randomPasswordList");
+	selectObj.options.length=0;
+	for (var i=0;i<numberOfWords;i++) {
+		var word="";
+		for (var j=0;j<lengthOfWord;j++) {
+			word=word.concat(String.fromCharCode(97 + Math.round(Math.random() * 25)));
+		}
+		var newPassword = document.createElement('option');
+		newPassword.text=word;
+		selectObj.add(newPassword);
+	}
+}
+function selectPassword() {
+	var selectObj=document.getElementById("randomPasswordList");
+	var passwordObj=document.getElementById("selectedPassword");
+	passwordObj.value=selectObj.options[selectObj.selectedIndex].text;
+	passwordObj.select();
+}
+</script>
+<h1>random lowercase password generator</h1>
+<div>
+	<select id="randomPasswordList" size=25 onClick="selectPassword()">
+	</select>
+</div>
+<div>
+	<input id="selectedPassword" type="text" readonly="readonly" size="10"></input>
+</div>
+<div>
+	<input value="Generate" onclick="randomLowercaseWord(100,10);"  type="button">
+</div>
+<hr/>
+<div>
+By Tony Bussi&egrave;res - October 2011. <br/>
+Released under Apache Licence 2.0.<br/>
+Inspired by <a href="http://security.stackexchange.com/questions/6114/how-can-i-choose-a-strong-password-that-is-easy-use-on-a-smartphone/6126#6126">
+an answer on security.stackexchange.com</a>
+</div>
+</html>
