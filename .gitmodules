@@ -1,3 +1,6 @@
 [submodule "pace"]
 	path = pace
 	url = https://github.com/codingtony/pace.git
+[submodule "ppl_cheatsheets"]
+	path = ppl_cheatsheets
+	url = https://github.com/codingtony/ppl_cheatsheets.git
