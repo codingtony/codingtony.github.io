@@ -10,12 +10,38 @@ function randomLowercaseWord(numberOfWords,lengthOfWord) {
 	for (var i=0;i<numberOfWords;i++) {
 		var word="";
 		for (var j=0;j<lengthOfWord;j++) {
-			word=word.concat(String.fromCharCode(97 + Math.round(Math.random() * 25)));
+			word=word.concat(String.fromCharCode(97 + shitty_cryptograpically_secure_random_int(0,25)));
 		}
 		var newPassword = document.createElement('option');
 		newPassword.text=word;
 		selectObj.add(newPassword);
 	}
+}
+function shitty_cryptograpically_secure_random_int(min, max) {
+    if (min < 0 || min > 0xFFFF) {
+        throw new Error("minimum supported number is 0, this shitty generator can only make numbers between 0-65535 inclusive.");
+    }
+    if (max > 0xFFFF || max < 0) {
+        throw new Error("max supported number is 65535, this shitty generator can only make numbers between 0-65535 inclusive.");
+    }
+    if (min > max) {
+        throw new Error("dude min>max wtf");
+    }
+    // micro-optimization (it does mage a huge relative difference, but on modern cpus...)
+    let randArr = (max > 255 ? new Uint16Array(1) : new Uint8Array(1));
+    let ret;
+    let attempts = 0;
+    do {
+        crypto.getRandomValues(randArr);
+        ret = randArr[0];
+        ++attempts;
+        if (attempts > 999999) {
+            // should basically never happen with max 0xFFFF/Uint16Array. 
+	    // if you change it to Uint32Array or more, this may have a good chance of happening though.
+            throw new Error("tried a million times, soemthing is wrong");
+        }
+    } while (ret < min || ret > max);
+    return ret;
 }
 function selectPassword() {
 	var selectObj=document.getElementById("randomPasswordList");
