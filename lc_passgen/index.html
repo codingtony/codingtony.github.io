@@ -10,7 +10,7 @@ function randomLowercaseWord(numberOfWords,lengthOfWord) {
 	for (var i=0;i<numberOfWords;i++) {
 		var word="";
 		for (var j=0;j<lengthOfWord;j++) {
-			word=word.concat(String.fromCharCode(97 + shitty_cryptograpically_secure_random_int(25)));
+			word=word.concat(String.fromCharCode(97 + shitty_cryptograpically_secure_random_int(0,25)));
 		}
 		var newPassword = document.createElement('option');
 		newPassword.text=word;
